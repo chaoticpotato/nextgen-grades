@@ -11,7 +11,7 @@ import {
 } from "recharts";
 import axios from "axios";
 
-const ProjectChartNew = ({ userId, currentSprint }) => {
+const ProjectChartNew = ({ userId, currentSprint, isJava }) => {
   // Queries
   const {
     data: taskLogs,
@@ -27,7 +27,11 @@ const ProjectChartNew = ({ userId, currentSprint }) => {
 
   // Veriyi Recharts'in anlayacağı formata dönüştür
   const chartData = taskLogs?.data?.taskLogs
-    .filter((s) => s.sprint <= currentSprint)
+    .filter((s) =>
+      isJava
+        ? s.sprint <= currentSprint && s.sprint > 12
+        : s.sprint <= currentSprint
+    )
     .map((item) => ({
       name: `s${item.sprint}d${item.day}`,
       "Proje Ortalaması": Math.ceil(
