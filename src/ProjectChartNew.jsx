@@ -27,9 +27,9 @@ const ProjectChartNew = ({ userId, currentSprint }) => {
 
   // Veriyi Recharts'in anlayacağı formata dönüştür
   const chartData = taskLogs?.data?.taskLogs
-    .filter((s) => s.sprint <= 5)
+    .filter((s) => s.sprint <= currentSprint)
     .map((item) => ({
-      name: `S${item.sprint} - D${item.day}`,
+      name: `s${item.sprint}d${item.day}`,
       "Proje Ortalaması": Math.ceil(
         Number(
           item.max_grades_arr.reduce((a, b) => a + (b === null ? 0 : b), 0)

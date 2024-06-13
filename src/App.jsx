@@ -30,9 +30,9 @@ function App() {
             ))}
           </div>
         </nav>
-
-        <CohortInfo cohortId={cohortId} setCurrentSprint={setCurSprint} />
-
+        {cohortId && (
+          <CohortInfo cohortId={cohortId} setCurrentSprint={setCurSprint} />
+        )}
         <div className="flex-1 overflow-auto text-sm p-3">
           {cohortPeople.map((p) => (
             <div
@@ -49,7 +49,11 @@ function App() {
       </aside>
       <div className="flex-[3] border-l border-black/10 overflow-hidden">
         {person && (
-          <Grades person={person} cohortId={cohortId} currentSprint={5} />
+          <Grades
+            person={person}
+            cohortId={cohortId}
+            currentSprint={curSprint}
+          />
         )}
       </div>
     </div>
