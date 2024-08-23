@@ -9,7 +9,7 @@ export default function CohortPersons({ cohortName, selectedPerson, selectPerson
     cohortNameFixed = "0424";
   }
 
-  const isJava = javaCohortNames.includes(cohortName);
+  const isFromFile = javaCohortNames.includes(cohortName);
 
   const {
     data,
@@ -24,13 +24,13 @@ export default function CohortPersons({ cohortName, selectedPerson, selectPerson
         "division": "FSWEB" + cohortNameFixed.toUpperCase()
       }
       ),
-    queryKey: [cohortNameFixed],
-    enabled: !!cohortNameFixed && !isJava
+    queryKey: ["fsweb" + cohortNameFixed],
+    enabled: !!cohortNameFixed && !isFromFile
   });
 
   let source = null;
 
-  if (isJava) {
+  if (isFromFile) {
     source = persons[cohortNameFixed]
     console.log(source)
   } else {
