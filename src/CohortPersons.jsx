@@ -4,6 +4,11 @@ import { javaCohortNames, persons } from "./persons";
 
 export default function CohortPersons({ cohortName, selectedPerson, selectPerson }) {
 
+  let cohortNameFixed = cohortName;
+  if (cohortName === "0324-0424") {
+    cohortNameFixed = "0424";
+  }
+
   const isJava = javaCohortNames.includes(cohortName);
 
   const {
@@ -16,19 +21,17 @@ export default function CohortPersons({ cohortName, selectedPerson, selectPerson
         "https://coursey-gpt-backend.herokuapp.com/nextgen/cohorts/journeyUsers", {
         "email": "admin@workintech.com.tr",
         "password": process.env.REACT_APP_JP,
-        "division": "FSWEB" + cohortName.toUpperCase()
+        "division": "FSWEB" + cohortNameFixed.toUpperCase()
       }
       ),
-    queryKey: [cohortName],
-    enabled: !!cohortName && !isJava
+    queryKey: [cohortNameFixed],
+    enabled: !!cohortNameFixed && !isJava
   });
 
   let source = null;
 
-
-  console.log(isJava, javaCohortNames, cohortName)
   if (isJava) {
-    source = persons[cohortName]
+    source = persons[cohortNameFixed]
     console.log(source)
   } else {
     source = data?.data?.users
