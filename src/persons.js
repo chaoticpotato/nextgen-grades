@@ -20,6 +20,7 @@ export const cohortIds = {
   "0724": 43,
   p0424: 32,
   "0824": 46,
+  "frontend2024": null
 };
 
 export const javaCohorts = [29, 37];
